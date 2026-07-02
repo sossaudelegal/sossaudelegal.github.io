@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SoS · Seiffert &amp; Silva · Direito da Saúde</title>
+  <meta name="description" content="SoS · Seiffert &amp; Silva — Escritório especializado em direito da saúde suplementar, com foco em nefrologia. Atuação em todo o território nacional." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── RESET & BASE ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #F0F9FF;
+      color: #1a2e1a;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── TOKENS ─── */
+    :root {
+      --teal:    #15957E;
+      --green-d: #435C2F;
+      --green-m: #8BBD64;
+      --ice:     #F0F9FF;
+      --white:   #FFFFFF;
+      --text:    #1C2B1C;
+      --text-m:  #3D5C3D;
+      --border:  #D4E8D4;
+    }
+
+    /* ─── TYPOGRAPHY ─── */
+    h1, h2, h3, h4, nav, .poppins {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: var(--green-d);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 3rem;
+      height: 64px;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+    }
+    .nav-logo-block {
+      background: var(--teal);
+      color: var(--white);
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      font-size: 1.25rem;
+      letter-spacing: -0.03em;
+      padding: 0.2rem 0.55rem;
+      line-height: 1;
+    }
+    .nav-brand-name {
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.72);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+      align-items: center;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: rgba(255,255,255,0.8);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--green-m); }
+    .nav-cta {
+      background: var(--teal);
+      color: var(--white) !important;
+      padding: 0.4rem 1.1rem;
+      border-radius: 2px;
+      letter-spacing: 0.04em !important;
+    }
+    .nav-cta:hover { background: #118A72; color: var(--white) !important; }
+
+    /* Hamburger */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: rgba(255,255,255,0.85);
+      transition: 0.3s;
+    }
+
+    /* ─── HERO ─── */
+    #home {
+      min-height: 100vh;
+      background: var(--green-d);
+      display: flex;
+      align-items: center;
+      padding: 100px 3rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    #home::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 42%;
+      height: 100%;
+      background: linear-gradient(135deg, transparent 30%, rgba(21,149,126,0.12) 100%);
+      pointer-events: none;
+    }
+    #home::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; right: -60px;
+      width: 320px; height: 320px;
+      border-radius: 50%;
+      border: 1px solid rgba(139,189,100,0.15);
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 780px;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-eyebrow {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--green-m);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 2px;
+      background: var(--green-m);
+    }
+    .hero-headline {
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 800;
+      line-height: 1.08;
+      color: var(--white);
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.02em;
+    }
+    .hero-headline .accent { color: var(--green-m); }
+    .hero-lema {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      font-weight: 300;
+      color: rgba(255,255,255,0.65);
+      font-style: italic;
+      margin-bottom: 2.5rem;
+      border-left: 3px solid var(--teal);
+      padding-left: 1rem;
+    }
+    .hero-lema .lema-word { color: rgba(255,255,255,0.90); font-weight: 500; font-style: normal; }
+    .hero-desc {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.72);
+      max-width: 560px;
+      margin-bottom: 2.5rem;
+      line-height: 1.75;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      background: var(--teal);
+      color: var(--white);
+      padding: 0.8rem 1.8rem;
+      border-radius: 2px;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: #118A72; transform: translateY(-1px); }
+    .btn-secondary {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: rgba(255,255,255,0.75);
+      border: 1px solid rgba(255,255,255,0.25);
+      padding: 0.8rem 1.8rem;
+      border-radius: 2px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--green-m); color: var(--green-m); }
+
+    /* Scroll indicator */
+    .hero-scroll {
+      position: absolute;
+      bottom: 2rem;
+      left: 3rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+    }
+    .hero-scroll .scroll-line {
+      width: 40px;
+      height: 1px;
+      background: rgba(255,255,255,0.25);
+    }
+
+    /* ─── SECTION BASE ─── */
+    section { padding: 5rem 3rem; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 0.6rem;
+    }
+    .section-title {
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      font-weight: 700;
+      color: var(--green-d);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+    .section-lead {
+      font-size: 1rem;
+      color: var(--text-m);
+      max-width: 640px;
+      line-height: 1.75;
+    }
+    .divider {
+      width: 48px;
+      height: 3px;
+      background: var(--teal);
+      margin: 1.25rem 0 2.5rem;
+    }
+
+    /* ─── SOBRE ─── */
+    #sobre { background: var(--white); }
+    .sobre-grid {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 4rem;
+      align-items: start;
+      margin-top: 3rem;
+    }
+    /* Coluna esquerda: foto */
+    .sobre-foto-col { display: flex; flex-direction: column; gap: 0; }
+    .sobre-foto-wrap {
+      position: relative;
+      width: 100%;
+    }
+    .sobre-foto-wrap img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: top center;
+      aspect-ratio: 3/4;
+      filter: grayscale(8%);
+    }
+    /* barra de cor abaixo da foto */
+    .sobre-foto-bar {
+      background: var(--teal);
+      height: 5px;
+      width: 100%;
+    }
+    .sobre-foto-caption {
+      background: var(--ice);
+      border-left: 4px solid var(--teal);
+      padding: 1rem 1.1rem;
+    }
+    .sobre-foto-caption-name {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--green-d);
+      margin-bottom: 0.1rem;
+    }
+    .sobre-foto-caption-oab {
+      font-size: 0.73rem;
+      color: var(--teal);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    /* Coluna direita: bio + card */
+    .sobre-direita { display: flex; flex-direction: column; gap: 2.5rem; }
+    .sobre-bio p {
+      color: var(--text-m);
+      margin-bottom: 1rem;
+      font-size: 0.97rem;
+      line-height: 1.8;
+    }
+    .sobre-bio p:last-child { margin-bottom: 0; }
+    .sobre-card {
+      background: var(--ice);
+      border-left: 4px solid var(--teal);
+      padding: 1.75rem;
+    }
+    .sobre-card-name {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--green-d);
+      margin-bottom: 0.2rem;
+    }
+    .sobre-card-oab {
+      font-size: 0.78rem;
+      color: var(--teal);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+    .sobre-card-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      margin-bottom: 0.7rem;
+      font-size: 0.88rem;
+      color: var(--text-m);
+    }
+    .sobre-card-item .dot {
+      display: block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green-m);
+      margin-top: 0.45rem;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 900px) {
+      .sobre-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .sobre-foto-wrap img { aspect-ratio: 4/3; object-position: center 20%; }
+    }
+
+    /* ─── SERVIÇOS ─── */
+    #servicos { background: var(--ice); }
+    .servicos-intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: end;
+      margin-bottom: 3.5rem;
+    }
+    .servicos-grupo-label {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.75rem;
+      display: inline-flex;
+      align-items: center;
+      margin-bottom: 1.25rem;
+    }
+    .grupo-a-label { background: var(--teal); color: var(--white); }
+    .grupo-b-label { background: var(--green-m); color: var(--green-d); }
+    .grupo-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--green-d);
+      margin-bottom: 0.4rem;
+    }
+    .grupo-desc {
+      font-size: 0.88rem;
+      color: var(--text-m);
+      line-height: 1.65;
+    }
+    .servicos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+    /* Service card — signature element: left border as juridical marker */
+    .service-card {
+      background: var(--white);
+      border-left: 4px solid var(--teal);
+      padding: 1.4rem 1.4rem 1.4rem 1.2rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      transition: box-shadow 0.2s, transform 0.15s;
+    }
+    .service-card:hover {
+      box-shadow: 0 4px 20px rgba(67,92,47,0.10);
+      transform: translateY(-2px);
+    }
+    .service-card.grupo-b { border-left-color: var(--green-m); }
+    .service-icon {
+      font-size: 1.4rem;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+    .service-name {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 0.88rem;
+      color: var(--green-d);
+      margin-bottom: 0.3rem;
+      line-height: 1.3;
+    }
+    .service-desc {
+      font-size: 0.8rem;
+      color: var(--text-m);
+      line-height: 1.6;
+    }
+    .servicos-sep {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 3rem 0 2rem;
+    }
+
+    /* ─── ARTIGOS ─── */
+    #artigos { background: var(--white); }
+    .artigos-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .artigos-header-left {}
+    .artigos-ver-todos {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--teal);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: gap 0.2s;
+      white-space: nowrap;
+      padding-bottom: 0.2rem;
+      border-bottom: 1px solid transparent;
+    }
+    .artigos-ver-todos:hover {
+      border-bottom-color: var(--teal);
+      gap: 0.65rem;
+    }
+    .artigos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .artigo-card {
+      display: flex;
+      flex-direction: column;
+      background: var(--ice);
+      border-top: 3px solid var(--teal);
+      padding: 1.75rem;
+      text-decoration: none;
+      transition: box-shadow 0.2s, transform 0.15s;
+    }
+    .artigo-card:hover {
+      box-shadow: 0 6px 24px rgba(67,92,47,0.10);
+      transform: translateY(-3px);
+    }
+    .artigo-tag {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 0.75rem;
+    }
+    .artigo-titulo {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--green-d);
+      line-height: 1.35;
+      margin-bottom: 0.75rem;
+      flex-grow: 1;
+    }
+    .artigo-resumo {
+      font-size: 0.82rem;
+      color: var(--text-m);
+      line-height: 1.65;
+      margin-bottom: 1.25rem;
+    }
+    .artigo-meta {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.7rem;
+      color: #7A9A7A;
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .artigo-meta::before {
+      content: '';
+      display: block;
+      width: 18px;
+      height: 1px;
+      background: var(--green-m);
+    }
+    /* Estado vazio (sem artigos ainda) */
+    .artigos-empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 3.5rem 2rem;
+      border: 1px dashed var(--border);
+      color: var(--text-m);
+    }
+    .artigos-empty p:first-child {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--green-d);
+      margin-bottom: 0.4rem;
+    }
+    .artigos-empty p:last-child { font-size: 0.82rem; }
+
+    /* Loading skeleton */
+    .artigo-skeleton {
+      background: var(--ice);
+      border-top: 3px solid var(--border);
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .skel-line {
+      background: linear-gradient(90deg, #e0ede0 25%, #edf5ed 50%, #e0ede0 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.4s infinite;
+      border-radius: 2px;
+    }
+    @keyframes shimmer { to { background-position: -200% 0; } }
+
+    @media (max-width: 900px) {
+      .artigos-grid { grid-template-columns: 1fr; }
+    }
+    @media (min-width: 560px) and (max-width: 900px) {
+      .artigos-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ─── CONTATO ─── */
+    #contato { background: var(--white); }
+    .contato-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      margin-top: 3rem;
+    }
+    .contato-info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.75rem;
+    }
+    .contato-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--ice);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .contato-info-label {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 0.25rem;
+    }
+    .contato-info-value {
+      font-size: 0.9rem;
+      color: var(--text-m);
+    }
+    .contato-info-value a {
+      color: var(--teal);
+      text-decoration: none;
+    }
+    .contato-info-value a:hover { text-decoration: underline; }
+
+    /* Form */
+    .contato-form { display: flex; flex-direction: column; gap: 1rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.35rem; }
+    .form-label {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--green-d);
+    }
+    .form-input, .form-select, .form-textarea {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.9rem;
+      color: var(--text);
+      background: var(--ice);
+      border: 1px solid var(--border);
+      border-radius: 0;
+      padding: 0.65rem 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--teal);
+      background: var(--white);
+    }
+    .form-textarea { resize: vertical; min-height: 120px; }
+    .form-submit {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: var(--teal);
+      color: var(--white);
+      border: none;
+      padding: 0.85rem 2rem;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: background 0.2s;
+      align-self: flex-start;
+    }
+    .form-submit:hover { background: #118A72; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #1A2910;
+      padding: 2.5rem 3rem;
+      text-align: center;
+    }
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+    }
+    .footer-text {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.35);
+    }
+    .footer-oab {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.30);
+      letter-spacing: 0.05em;
+    }
+
+    /* ─── SCROLL REVEAL ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links {
+        display: none;
+        position: fixed;
+        top: 64px; left: 0; right: 0;
+        background: var(--green-d);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1.5rem;
+        gap: 1.25rem;
+        border-top: 1px solid rgba(255,255,255,0.08);
+      }
+      .nav-links.open { display: flex; }
+      .nav-toggle { display: flex; }
+
+      #home { padding: 100px 1.5rem 4rem; }
+      section { padding: 4rem 1.5rem; }
+
+      .sobre-grid,
+      .servicos-intro,
+      .contato-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 560px) {
+      .hero-headline { font-size: 2rem; }
+      footer { padding: 2rem 1.5rem; }
+      .footer-inner { flex-direction: column; align-items: center; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     NAVEGAÇÃO
+════════════════════════════════════════════ -->
+<nav role="navigation" aria-label="Menu principal">
+  <a href="#home" class="nav-brand" aria-label="SoS · Seiffert &amp; Silva — página inicial">
+    <span class="nav-logo-block">SoS</span>
+    <span class="nav-brand-name">Seiffert &amp; Silva</span>
+  </a>
+  <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false" id="navToggle">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#artigos">Artigos</a></li>
+    <li><a href="#contato">Contato</a></li>
+    <li><a href="#" class="nav-cta">Área de Membros</a></li>
+  </ul>
+</nav>
+
+<!-- ═══════════════════════════════════════════
+     SEÇÃO 1 — HOME / HERO
+════════════════════════════════════════════ -->
+<section id="home">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Direito da Saúde Suplementar · Território Nacional</p>
+    <h1 class="hero-headline">
+      Especialização onde<br>
+      os casos são mais<br>
+      <span class="accent">complexos.</span>
+    </h1>
+    <p class="hero-lema">
+      "Prevenir, remediar, <span class="lema-word">sobretudo</span>, esclarecer."
+    </p>
+    <p class="hero-desc">
+      Seiffert &amp; Silva Advocacia atua na defesa de pacientes diante de negativas de cobertura, cancelamentos indevidos e reajustes abusivos. Foco estratégico em nefrologia — portfólio completo em saúde suplementar.
+    </p>
+    <div class="hero-actions">
+      <a href="#servicos" class="btn-primary">Conhecer os Serviços</a>
+      <a href="#contato" class="btn-secondary">Falar com o Escritório</a>
+    </div>
+  </div>
+  <div class="hero-scroll" aria-hidden="true">
+    <span class="scroll-line"></span>
+    Rolar
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SEÇÃO 2 — SOBRE NÓS
+════════════════════════════════════════════ -->
+<section id="sobre">
+  <div class="section-inner">
+    <p class="section-label reveal">Sobre o Escritório</p>
+    <h2 class="section-title reveal">Seiffert &amp; Silva Advocacia</h2>
+    <div class="divider reveal"></div>
+
+    <div class="sobre-grid">
+
+      <!-- COLUNA ESQUERDA: foto -->
+      <div class="sobre-foto-col reveal">
+        <div class="sobre-foto-wrap">
+          <img src="davi.jpg" alt="Dr. Davi Silva Filho — Co-fundador Seiffert & Silva Advocacia" loading="lazy" />
+        </div>
+        <div class="sobre-foto-bar"></div>
+        <div class="sobre-foto-caption">
+          <p class="sobre-foto-caption-name">Dr. Davi Silva Filho</p>
+          <p class="sobre-foto-caption-oab">OAB/DF 71.451 · Co-fundador</p>
+        </div>
+      </div>
+
+      <!-- COLUNA DIREITA: bio + card -->
+      <div class="sobre-direita">
+        <div class="sobre-bio reveal">
+          <p>
+            O escritório Seiffert &amp; Silva Advocacia — marca SoS · Seiffert &amp; Silva — nasceu da convicção de que o litígio em saúde suplementar exige especialização real: conhecimento técnico do procedimento negado, compreensão da dinâmica operacional das operadoras e domínio da jurisprudência em formação nos tribunais regionais e superiores.
+          </p>
+          <p>
+            Nossa atuação é voltada à representação de pacientes diante de negativas de cobertura, cancelamentos indevidos e reajustes abusivos — com foco estratégico em nefrologia e portfólio abrangente em saúde suplementar.
+          </p>
+          <p>
+            Com atuação em todo o território nacional, o escritório combina rigor técnico e sensibilidade para o que está em jogo em cada caso: o acesso do paciente ao tratamento que precisa, no momento em que precisa.
+          </p>
+        </div>
+
+        <div class="sobre-card reveal">
+          <p class="sobre-card-name">Especialização e atuação</p>
+          <p class="sobre-card-oab">Áreas de concentração</p>
+          <div class="sobre-card-item">
+            <span class="dot"></span>
+            <span>Direito da saúde suplementar</span>
+          </div>
+          <div class="sobre-card-item">
+            <span class="dot"></span>
+            <span>Atuação estratégica em nefrologia e direitos dos pacientes renais</span>
+          </div>
+          <div class="sobre-card-item">
+            <span class="dot"></span>
+            <span>Negativas de cobertura, cancelamentos e reajustes abusivos</span>
+          </div>
+          <div class="sobre-card-item">
+            <span class="dot"></span>
+            <span>Litigância em tribunais estaduais e superiores</span>
+          </div>
+          <div class="sobre-card-item">
+            <span class="dot"></span>
+            <span>Atuação em todo o território nacional</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SEÇÃO 3 — SERVIÇOS
+════════════════════════════════════════════ -->
+<section id="servicos">
+  <div class="section-inner">
+    <p class="section-label reveal">Portfólio de Serviços</p>
+    <h2 class="section-title reveal">O que fazemos</h2>
+    <div class="divider reveal"></div>
+    <p class="section-lead reveal">
+      Escritório de direito à saúde com foco estratégico em nefrologia e portfólio abrangente em saúde suplementar. Atendemos pacientes e instituições de saúde em todo o território nacional.
+    </p>
+
+    <!-- GRUPO A -->
+    <div style="margin-top: 3rem;">
+      <div class="reveal">
+        <span class="servicos-grupo-label grupo-a-label">Grupo A — Foco Principal</span>
+        <p class="grupo-title">Nefrologia</p>
+        <p class="grupo-desc" style="max-width: 580px;">
+          Atuação especializada nos procedimentos e direitos que estruturam o tratamento renal — de hemodiafiltração ao transplante, passando por insumos, medicamentos e revisão de reajustes.
+        </p>
+      </div>
+
+      <div class="servicos-grid" style="margin-top: 1.5rem;">
+        <div class="service-card reveal">
+          <span class="service-icon">⚕️</span>
+          <div>
+            <p class="service-name">Reembolso de HDF (Hemodiafiltração)</p>
+            <p class="service-desc">Combate ao subdimensionamento por código genérico (cód. 150/151). Atuação junto a clínicas e pacientes com decisões favoráveis no TJDFT e TJGO.</p>
+          </div>
+        </div>
+        <div class="service-card reveal">
+          <span class="service-icon">🚫</span>
+          <div>
+            <p class="service-name">HDF Negada ou Empacotada pelo Plano</p>
+            <p class="service-desc">Taxatividade mitigada, ADI 7.265 e Lei 14.454/2022. Cobertura compulsória de procedimentos de eficácia reconhecida negados com base no rol ANS.</p>
+          </div>
+        </div>
+        <div class="service-card reveal">
+          <span class="service-icon">🏥</span>
+          <div>
+            <p class="service-name">Hemodiálise Limitada ou Clínica Descredenciada</p>
+            <p class="service-desc">Continuidade de tratamento crônico, manutenção de vínculo terapêutico e impugnação de descredenciamento sem alternativa equivalente.</p>
+          </div>
+        </div>
+        <div class="service-card reveal">
+          <span class="service-icon">🏠</span>
+          <div>
+            <p class="service-name">Diálise Peritoneal Domiciliar e Insumos</p>
+            <p class="service-desc">Cobertura de diálise peritoneal em domicílio e fornecimento de insumos essenciais negados pelo plano — direito à modalidade terapêutica indicada pelo médico.</p>
+          </div>
+        </div>
+        <div class="service-card reveal">
+          <span class="service-icon">💊</span>
+          <div>
+            <p class="service-name">Imunossupressores Pós-Transplante</p>
+            <p class="service-desc">Fornecimento de medicamentos imunossupressores negados após transplante renal. Risco de rejeição como fundamento de urgência.</p>
+          </div>
+        </div>
+        <div class="service-card reveal">
+          <span class="service-icon">🧬</span>
+          <div>
+            <p class="service-name">Dessensibilização Pré-Transplante (Off-label)</p>
+            <p class="service-desc">Protocolo de dessensibilização imunológica para viabilização do transplante. Argumentação baseada em evidência científica e necessidade médica documentada.</p>
+          </div>
+        </div>
+        <div class="service-card reveal">
+          <span class="service-icon">🤖</span>
+          <div>
+            <p class="service-name">Cirurgia Robótica Urológica e Renal Negada</p>
+            <p class="service-desc">Cobertura de procedimentos robóticos em urologia e rins. Divergência jurisprudencial monitorada entre TJDFT, STJ e tribunais do Sul.</p>
+          </div>
+        </div>
+        <div class="service-card reveal">
+          <span class="service-icon">📊</span>
+          <div>
+            <p class="service-name">Revisão de Reajustes Abusivos (Carteira HDF)</p>
+            <p class="service-desc">Impugnação de reajustes não autorizados pela ANS e de alterações unilaterais de tabelas de reembolso aplicadas a procedimentos nefrológicos.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="servicos-sep" />
+
+    <!-- GRUPO B -->
+    <div>
+      <div class="reveal">
+        <span class="servicos-grupo-label grupo-b-label">Grupo B — Portfólio Amplo</span>
+        <p class="grupo-title">Saúde Suplementar Geral</p>
+        <p class="grupo-desc" style="max-width: 580px;">
+          Atuação integral em negativas de cobertura, cancelamentos indevidos e disputas contratuais com operadoras de saúde — para pacientes e clínicas em todo o espectro de especialidades.
+        </p>
+      </div>
+
+      <div class="servicos-grid" style="margin-top: 1.5rem;">
+        <div class="service-card grupo-b reveal">
+          <span class="service-icon">✂️</span>
+          <div>
+            <p class="service-name">Cirurgia Reparadora Pós-Bariátrica</p>
+            <p class="service-desc">Cobertura compulsória de cirurgias plásticas reparadoras decorrentes de emagrecimento pós-bariátrica. Jurisprudência consolidada no STJ.</p>
+          </div>
+        </div>
+        <div class="service-card grupo-b reveal">
+          <span class="service-icon">🩺</span>
+          <div>
+            <p class="service-name">Bomba de Insulina e Dispositivos Médicos</p>
+            <p class="service-desc">Fornecimento de bomba de insulina e demais dispositivos médicos negados pelo plano. Indicação médica documentada como fundamento prioritário.</p>
+          </div>
+        </div>
+        <div class="service-card grupo-b reveal">
+          <span class="service-icon">🧪</span>
+          <div>
+            <p class="service-name">Medicamentos Oncológicos Negados</p>
+            <p class="service-desc">Cobertura de medicamentos fora do rol, off-label, de uso domiciliar ou de alto custo em oncologia. ADI 7.265 e jurisprudência superior como base argumentativa.</p>
+          </div>
+        </div>
+        <div class="service-card grupo-b reveal">
+          <span class="service-icon">🔬</span>
+          <div>
+            <p class="service-name">Cirurgias Oncológicas de Alta Complexidade</p>
+            <p class="service-desc">Robótica oncológica e reconstrução pós-operatória negadas. Atuação com urgência e monitoramento da jurisprudência regional.</p>
+          </div>
+        </div>
+        <div class="service-card grupo-b reveal">
+          <span class="service-icon">🧠</span>
+          <div>
+            <p class="service-name">TEA — Terapias Negadas ou Limitadas</p>
+            <p class="service-desc">Cobertura de ABA, fonoaudiologia, psicoterapia e demais terapias para pacientes com Transtorno do Espectro Autista. Sem limitação de sessões.</p>
+          </div>
+        </div>
+        <div class="service-card grupo-b reveal">
+          <span class="service-icon">🛏️</span>
+          <div>
+            <p class="service-name">Home Care Negado</p>
+            <p class="service-desc">Internação domiciliar negada ou interrompida. Direito à modalidade de cuidado indicada pelo médico assistente como extensão da internação hospitalar.</p>
+          </div>
+        </div>
+        <div class="service-card grupo-b reveal">
+          <span class="service-icon">⚠️</span>
+          <div>
+            <p class="service-name">Cancelamento Indevido Durante Tratamento</p>
+            <p class="service-desc">STJ Tema 1082 — cancelamento de plano individual por inadimplência durante tratamento de doença grave. Proteção da continuidade terapêutica.</p>
+          </div>
+        </div>
+        <div class="service-card grupo-b reveal">
+          <span class="service-icon">👔</span>
+          <div>
+            <p class="service-name">Perda do Plano por Demissão ou Aposentadoria</p>
+            <p class="service-desc">Arts. 30 e 31 da Lei 9.656/98 — manutenção do plano coletivo empresarial após demissão sem justa causa ou aposentadoria. STJ Temas 989 e 1034.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SEÇÃO 4 — ARTIGOS (Home preview)
+════════════════════════════════════════════ -->
+<section id="artigos">
+  <div class="section-inner">
+    <div class="artigos-header">
+      <div class="artigos-header-left">
+        <p class="section-label reveal">Publicações</p>
+        <h2 class="section-title reveal">Artigos e análises</h2>
+        <div class="divider reveal"></div>
+      </div>
+      <a href="artigos.html" class="artigos-ver-todos reveal">Ver todos os artigos →</a>
+    </div>
+    <div class="artigos-grid" id="artigosHomeGrid">
+      <!-- Skeletons enquanto carrega -->
+      <div class="artigo-skeleton reveal">
+        <div class="skel-line" style="height:10px;width:40%"></div>
+        <div class="skel-line" style="height:18px;width:85%"></div>
+        <div class="skel-line" style="height:18px;width:65%"></div>
+        <div class="skel-line" style="height:10px;width:100%"></div>
+        <div class="skel-line" style="height:10px;width:90%"></div>
+        <div class="skel-line" style="height:10px;width:30%;margin-top:0.5rem"></div>
+      </div>
+      <div class="artigo-skeleton reveal">
+        <div class="skel-line" style="height:10px;width:50%"></div>
+        <div class="skel-line" style="height:18px;width:90%"></div>
+        <div class="skel-line" style="height:18px;width:70%"></div>
+        <div class="skel-line" style="height:10px;width:100%"></div>
+        <div class="skel-line" style="height:10px;width:80%"></div>
+        <div class="skel-line" style="height:10px;width:30%;margin-top:0.5rem"></div>
+      </div>
+      <div class="artigo-skeleton reveal">
+        <div class="skel-line" style="height:10px;width:45%"></div>
+        <div class="skel-line" style="height:18px;width:80%"></div>
+        <div class="skel-line" style="height:18px;width:60%"></div>
+        <div class="skel-line" style="height:10px;width:100%"></div>
+        <div class="skel-line" style="height:10px;width:75%"></div>
+        <div class="skel-line" style="height:10px;width:30%;margin-top:0.5rem"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SEÇÃO 5 — CONTATO
+════════════════════════════════════════════ -->
+<section id="contato">
+  <div class="section-inner">
+    <p class="section-label reveal">Entre em Contato</p>
+    <h2 class="section-title reveal">Fale com o escritório</h2>
+    <div class="divider reveal"></div>
+    <p class="section-lead reveal">
+      Para consultas, parcerias com clínicas ou assessoria a gestoras de saúde. Retorno em até 24 horas úteis.
+    </p>
+
+    <div class="contato-grid">
+      <div class="reveal">
+        <div class="contato-info-item">
+          <div class="contato-icon">📍</div>
+          <div>
+            <p class="contato-info-label">Localização</p>
+            <p class="contato-info-value">Brasília · Distrito Federal</p>
+          </div>
+        </div>
+        <div class="contato-info-item">
+          <div class="contato-icon">✉️</div>
+          <div>
+            <p class="contato-info-label">E-mail</p>
+            <p class="contato-info-value">
+              <a href="mailto:sossaudelegal@gmail.com">sossaudelegal@gmail.com</a>
+            </p>
+          </div>
+        </div>
+        <div class="contato-info-item">
+          <div class="contato-icon">💬</div>
+          <div>
+            <p class="contato-info-label">WhatsApp</p>
+            <p class="contato-info-value">
+              <a href="https://wa.me/5561982108263" target="_blank" rel="noopener">+55 61 98210-8263</a>
+            </p>
+          </div>
+        </div>
+        <div class="contato-info-item">
+          <div class="contato-icon">⚖️</div>
+          <div>
+            <p class="contato-info-label">Registro Profissional</p>
+            <p class="contato-info-value">OAB/DF 71.451 · Dr. Davi Silva Filho</p>
+          </div>
+        </div>
+      </div>
+
+      <form class="contato-form reveal" id="contatoForm" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="nome">Nome</label>
+            <input class="form-input" type="text" id="nome" name="nome" placeholder="Seu nome completo" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="email">E-mail</label>
+            <input class="form-input" type="email" id="email" name="email" placeholder="seu@email.com" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="assunto">Assunto</label>
+          <select class="form-select" id="assunto" name="assunto">
+            <option value="">Selecione um assunto</option>
+            <option value="paciente">Sou paciente — negativa de cobertura</option>
+            <option value="parceria">Assessoria a clínicas ou gestoras de saúde</option>
+            <option value="parceria">Proposta de parceria</option>
+            <option value="outro">Outro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="mensagem">Mensagem</label>
+          <textarea class="form-textarea" id="mensagem" name="mensagem" placeholder="Descreva sua situação ou demanda..."></textarea>
+        </div>
+        <button type="submit" class="form-submit" id="formSubmit">Enviar Mensagem</button>
+        <p id="formMsg" style="font-size:0.82rem; color: var(--teal); display:none; margin-top: 0.5rem;"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <a href="#home" class="footer-brand" aria-label="Voltar ao topo">
+      <span class="nav-logo-block" style="font-size:1rem; padding: 0.15rem 0.45rem;">SoS</span>
+      <span class="nav-brand-name">Seiffert &amp; Silva</span>
+    </a>
+    <p class="footer-text">
+      "Prevenir, remediar, sobretudo, esclarecer."
+    </p>
+    <p class="footer-oab">OAB/DF 71.451 · © 2026</p>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════
+     SCRIPTS
+════════════════════════════════════════════ -->
+<script>
+  /* ── Hamburger menu ── */
+  const toggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+    toggle.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+  });
+  /* Close menu when a link is clicked */
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      toggle.setAttribute('aria-expanded', false);
+    });
+  });
+
+  /* ── Scroll reveal ── */
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(el => observer.observe(el));
+
+  /* ── Contact form (placeholder) ── */
+  document.getElementById('contatoForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('formSubmit');
+    const msg = document.getElementById('formMsg');
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
+    setTimeout(() => {
+      btn.textContent = 'Mensagem Enviada ✓';
+      msg.style.display = 'block';
+      msg.textContent = 'Recebemos sua mensagem. Retornaremos em até 24 horas úteis.';
+    }, 800);
+  });
+
+  /* ── Artigos: carrega JSON e renderiza preview na Home ── */
+  function formatarData(iso) {
+    const d = new Date(iso + 'T00:00:00');
+    return d.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
+  }
+  function slugify(str) {
+    return str.toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+  }
+  function renderArtigoCard(a, link) {
+    return `<a href="${link}" class="artigo-card">
+      <span class="artigo-tag">${a.tag || 'Artigo'}</span>
+      <p class="artigo-titulo">${a.titulo}</p>
+      <p class="artigo-resumo">${a.resumo}</p>
+      <span class="artigo-meta">${formatarData(a.data)}</span>
+    </a>`;
+  }
+  fetch('artigos.json')
+    .then(r => r.json())
+    .then(artigos => {
+      const grid = document.getElementById('artigosHomeGrid');
+      if (!artigos || artigos.length === 0) {
+        grid.innerHTML = `<div class="artigos-empty">
+          <p>Em breve, novos artigos.</p>
+          <p>Acompanhe as publicações do escritório sobre direito da saúde suplementar.</p>
+        </div>`;
+        return;
+      }
+      const tres = artigos.slice(0, 3);
+      grid.innerHTML = tres.map(a =>
+        renderArtigoCard(a, `artigos.html?id=${slugify(a.titulo)}`)
+      ).join('');
+    })
+    .catch(() => {
+      const grid = document.getElementById('artigosHomeGrid');
+      grid.innerHTML = `<div class="artigos-empty">
+        <p>Em breve, novos artigos.</p>
+        <p>Acompanhe as publicações do escritório sobre direito da saúde suplementar.</p>
+      </div>`;
+    });
+
+  /* ── Active nav link on scroll ── */
+  const sections = document.querySelectorAll('section[id]');
+  const navAs = document.querySelectorAll('.nav-links a:not(.nav-cta)');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 80) current = s.id;
+    });
+    navAs.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current
+        ? 'var(--green-m)'
+        : '';
+    });
+  }, { passive: true });
+</script>
+</body>
+</html>
